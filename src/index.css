@@ -34,8 +34,12 @@ header a {
   color: #ffffff;
   text-decoration: none;
 }
+main a {
+  color: purple;
+  text-decoration: none;
+}
 a:hover {
-  color: red;
+  color: orange;
 }
 main {
   grid-area: main;
@@ -69,6 +73,11 @@ footer {
   margin: 0;
   list-style-type: none;
 }
+/* .product-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 .products li {
   flex: 0 1 29rem;
   height: 47rem;
