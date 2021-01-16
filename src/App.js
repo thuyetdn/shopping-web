@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import Cart from "./components/Cart";
 import Filter from "./components/Filter";
 import Product from "./components/Product";
 import data from "./data.json"
@@ -6,6 +7,7 @@ function App() {
   const [products,setProducts] = useState(data.products)
   const [size,setSize] = useState("")
   const [sort,setSort] = useState("")
+  const [cartItems,setCartItems] = useState([])
   const  filterProducts = (event) =>{
     if (event.target.value === "") {
       setSize(event.target.value)
@@ -20,7 +22,7 @@ function App() {
     }
   } 
   const sortProducts = (event) =>{
-    // const sort = event.target.value;
+    const sort = event.target.value;
     setSort(sort)
     // console.log(sort)
     setProducts(products.slice().sort(
@@ -38,7 +40,25 @@ function App() {
             : -1
         )
     )
-    console.log(products)
+  }
+  const addToCart = (product) => {
+    const Cart = cartItems.slice();
+    let alreadyInCart = false;
+    Cart.forEach((item) => {
+      console.log(alreadyInCart)
+      if (item._id === product._id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      Cart.push({ ...product, count: 1 });
+    }
+    setCartItems(Cart)
+  }
+  const removeFromCart = (product) => {
+    const CartItems = cartItems.slice();
+    setCartItems(CartItems.filter((x) => x._id !== product._id))
   }
 
   return (
@@ -56,10 +76,13 @@ function App() {
                         filterProducts={filterProducts}
                         sortProducts={sortProducts}>
                   </Filter>
-                 <Product products={products}></Product>
+                 <Product products={products}
+                          addToCart={addToCart}
+                 />
               </div>
               <div className="sidebar">
-                Cart items
+                  <Cart cartItems={cartItems}
+                        removeFromCart={removeFromCart}/>
               </div>
           </div>
       </main>

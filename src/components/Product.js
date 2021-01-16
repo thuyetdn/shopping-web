@@ -1,6 +1,6 @@
 import formatCurrency from "../util";
 
-function Product({products}){
+function Product({products,addToCart}){
      const product = products.map((product) => (
           <li key={product._id}>
           <div className="product">
@@ -10,7 +10,7 @@ function Product({products}){
                </a>
                <div className="product-price">
                <div>{formatCurrency(product.price)}</div>
-               <button className="button primary">Add To Cart</button>
+               <button onClick={() => addToCart(product) } className="button primary">Add To Cart</button>
                </div>
           </div>
           </li>
