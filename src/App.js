@@ -7,12 +7,7 @@ function App() {
   const [products,setProducts] = useState(data.products)
   const [size,setSize] = useState("")
   const [sort,setSort] = useState("")
-  const [cartItems,setCartItems] = useState(
-    localStorage.getItem("cartItems")
-  ? JSON.parse(localStorage.getItem("cartItems"))
-  : [])
-  // console.log( localStorage.getItem("cartItems"))
-  // console.log( JSON.parse(localStorage.getItem("cartItems")))
+  const [cartItems,setCartItems] = useState([])
   const  filterProducts = (event) =>{
     if (event.target.value === "") {
       setSize(event.target.value)
@@ -50,7 +45,7 @@ function App() {
     const Cart = cartItems.slice();
     let alreadyInCart = false;
     Cart.forEach((item) => {
-      // console.log(alreadyInCart)
+      console.log(alreadyInCart)
       if (item._id === product._id) {
         item.count++;
         alreadyInCart = true;
@@ -60,16 +55,10 @@ function App() {
       Cart.push({ ...product, count: 1 });
     }
     setCartItems(Cart)
-    localStorage.setItem("cartItems", JSON.stringify(Cart));
   }
   const removeFromCart = (product) => {
-    const Cart = cartItems.slice();
-    // console.log(Cart.filter((x) => x._id !== product._id))
-    setCartItems(Cart.filter((x) => x._id !== product._id))
-    localStorage.setItem(
-      "cartItems",
-      JSON.stringify(Cart.filter((x) => x._id !== product._id))
-    );
+    const CartItems = cartItems.slice();
+    setCartItems(CartItems.filter((x) => x._id !== product._id))
   }
 
   return (

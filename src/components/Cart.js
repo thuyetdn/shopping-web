@@ -1,37 +1,5 @@
-import { useState } from "react";
 import formatCurrency from "../util";
-
 function Cart ({cartItems,removeFromCart}){
-    const [showCheckout, setShowCheckout] = useState(false)
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [address, setAddress] = useState("")
-    const handleInput = (e) => {
-      if(e.target.name === "name"){
-        setName(e.target.value)
-       
-      } else if (e.target.name === "email") {
-        setEmail(e.target.value)
-        
-      } else {
-        setAddress(e.target.value)
-       
-      }
-      
-      // [e.target.name]: e.target.value
-    };
-    // console.log(name)
-    //   console.log(email)
-      console.log(cartItems)
-    const createOrder = (e) => {
-      e.preventDefault();
-      const order = {
-        name: name,
-        email: email,
-        address: address,
-        cartItems: cartItems,
-      };
-    };
      return(
           <div>
           {cartItems.length === 0 ? (
@@ -74,53 +42,10 @@ function Cart ({cartItems,removeFromCart}){
                       cartItems.reduce((a, c) => a + c.price * c.count, 0)
                     )}
                   </div>
-                  <button 
-                   onClick={() => {
-                    setShowCheckout(true)
-                  }} className="button primary">Proceed</button>
+                  <button className="button primary">Proceed</button>
                 </div>
               </div>
             )}
-            { showCheckout && (
-                  <div className="cart">
-                    <form onSubmit={createOrder}>
-                      <ul className="form-container">
-                        <li>
-                          <label>Email</label>
-                          <input
-                            name="email"
-                            type="email"
-                            required
-                            onChange={handleInput}
-                          ></input>
-                        </li>
-                        <li>
-                          <label>Name</label>
-                          <input
-                            name="name"
-                            type="text"
-                            required
-                            onChange={handleInput}
-                          ></input>
-                        </li>
-                        <li>
-                          <label>Address</label>
-                          <input
-                            name="address"
-                            type="text"
-                            required
-                            onChange={handleInput}
-                          ></input>
-                        </li>
-                        <li>
-                          <button className="button primary" type="submit">
-                            Checkout
-                          </button>
-                        </li>
-                      </ul>
-                    </form>
-                  </div>
-                )}
           </div>
         </div>
      )

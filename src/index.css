@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -11,27 +10,18 @@ body,
 body,
 input,
 select,
-button,
 textarea {
-  font-family: Montserrat, Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .grid-container {
   display: grid;
-  grid-template-areas:
-    "header"
-    "main"
-    "footer";
+  grid-template-areas: "header" "main" "footer";
   grid-template-rows: 5rem 1fr 5rem;
   grid-template-columns: 1fr;
   height: 100%;
 }
-a {
-  text-decoration: none;
-}
-a:hover {
-  color: #ff8000;
-}
+
 header {
   grid-area: header;
   background-color: #203040;
@@ -44,17 +34,25 @@ header a {
   color: #ffffff;
   text-decoration: none;
 }
+main a {
+  color: purple;
+  text-decoration: none;
+}
+a:hover {
+  color: orange;
+}
 main {
   grid-area: main;
 }
 footer {
   grid-area: footer;
   background-color: #203040;
-  color: #ffffff;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .content {
   display: flex;
   flex-wrap: wrap;
@@ -75,6 +73,11 @@ footer {
   margin: 0;
   list-style-type: none;
 }
+/* .product-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 .products li {
   flex: 0 1 29rem;
   height: 47rem;
@@ -126,7 +129,19 @@ footer {
 .filter div {
   flex: 1;
 }
+/* Filter */
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.filter div {
+  flex: 1;
+}
 /* Index.css */
+/* cart */
 .cart {
   padding: 1rem;
   margin: 1rem;
@@ -167,22 +182,4 @@ footer {
 .total > div,
 .total > button {
   flex: 1;
-}
-/* Checkout form */
-form {
-  width: 100%;
-}
-.form-container {
-  width: 100%;
-  padding: 0;
-  list-style-type: none;
-}
-.form-container li {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-}
-input {
-  padding: 1rem;
-  border: 0.1rem #c0c0c0 solid;
 }
