@@ -1,5 +1,6 @@
 import { useState } from "react";
 import formatCurrency from "../util";
+import Fade from "react-reveal/Fade";
 
 function Cart ({cartItems,removeFromCart}){
     const [showCheckout, setShowCheckout] = useState(false)
@@ -22,7 +23,7 @@ function Cart ({cartItems,removeFromCart}){
     };
     // console.log(name)
     //   console.log(email)
-      console.log(cartItems)
+      // console.log(cartItems)
     const createOrder = (e) => {
       e.preventDefault();
       const order = {
@@ -43,27 +44,29 @@ function Cart ({cartItems,removeFromCart}){
           )}
           <div>
             <div className="cart">
-              <ul className="cart-items">
-                {cartItems.map((item) => (
-                  <li key={item._id}>
-                    <div>
-                      <img src={item.image} alt={item.title}></img>
-                    </div>
-                    <div>
-                      <div>{item.title}</div>
-                      <div className="right">
-                        {formatCurrency(item.price)} x {item.count}{" "}
-                        <button
-                          className="button"
-                          onClick={() => removeFromCart(item)}
-                        >
-                          Remove
-                        </button>
+              <Fade left cascade>
+                <ul className="cart-items">
+                  {cartItems.map((item) => (
+                    <li key={item._id}>
+                      <div>
+                        <img src={item.image} alt={item.title}></img>
                       </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
+                      <div>
+                        <div>{item.title}</div>
+                        <div className="right">
+                          {formatCurrency(item.price)} x {item.count}{" "}
+                          <button
+                            className="button"
+                            onClick={() => removeFromCart(item)}
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </Fade>
             </div>
             {cartItems.length !== 0 && (
               <div className="cart">
@@ -82,6 +85,7 @@ function Cart ({cartItems,removeFromCart}){
               </div>
             )}
             { showCheckout && (
+                <Fade right cascade>
                   <div className="cart">
                     <form onSubmit={createOrder}>
                       <ul className="form-container">
@@ -120,6 +124,7 @@ function Cart ({cartItems,removeFromCart}){
                       </ul>
                     </form>
                   </div>
+                </Fade>
                 )}
           </div>
         </div>
