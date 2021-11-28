@@ -26,7 +26,7 @@ function Cart ({cartItems,removeFromCart}){
       // console.log(cartItems)
     const createOrder = (e) => {
       e.preventDefault();
-      const order = {
+      const order = { //eslint-disable-line
         name: name,
         email: email,
         address: address,
